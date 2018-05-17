@@ -1,4 +1,4 @@
-# pvAccess RPC sample for generalpvaccess-datasource
+# pvAccess RPC sample for gfhttpva
 
 ## Installing
 
