@@ -40,7 +40,7 @@ def get_sine_cos(entity, start, end, param1):
         nano.append(0)
 
     return {"value": value, "type": pva.DOUBLE,
-            "seconds": seconds, "nano": nano}
+            "secondsPastEpoch": seconds, "nano": nano}
 
 
 def get_ramp(start, end, param1):
@@ -64,7 +64,7 @@ def get_ramp(start, end, param1):
         nano.append(0)
 
     return {"value": value, "type": pva.DOUBLE,
-            "seconds": seconds, "nano": nano}
+            "secondsPastEpoch": seconds, "nano": nano}
 
 
 def get_string(start, end):
@@ -73,7 +73,7 @@ def get_string(start, end):
     nano = [0, 0]
 
     return {"value": value, "type": pva.STRING,
-            "seconds": seconds, "nano": nano}
+            "secondsPastEpoch": seconds, "nano": nano}
 
 
 def get_point3(start, end):
@@ -89,7 +89,7 @@ def get_point3(start, end):
         nano.append(0)
 
     return {"value": value, "type": pva.ULONG,
-            "seconds": seconds, "nano": nano}
+            "secondsPastEpoch": seconds, "nano": nano}
 
 
 def get(x):
@@ -115,7 +115,7 @@ def get(x):
         data = get_ramp(str_sec, end_sec, param1)
 
     value = data["value"]
-    seconds = data["seconds"]
+    seconds = data["secondsPastEpoch"]
     nano = data["nano"]
     val_type = data["type"]
 
@@ -124,7 +124,7 @@ def get(x):
                         ("column2", [pva.DOUBLE])])
     table = pva.PvObject(OrderedDict({"labels": [pva.STRING], "value": vals}),
                          "epics:nt/NTTable:1.0")
-    table.setScalarArray("labels", ["value", "seconds", "nanoseconds"])
+    table.setScalarArray("labels", ["value", "secondsPastEpoch", "nanoseconds"])
     table.setStructure("value", OrderedDict({"column0": value,
                                              "column1": seconds,
                                              "column2": nano}))
