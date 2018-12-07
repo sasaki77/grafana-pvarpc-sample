@@ -162,7 +162,7 @@ def annotation(x):
 
     time = [(int(end_sec) + int(str_sec))//2*1000]
     title = [entity]
-    tags = ["test1 test2"]
+    tags = ["test1,test2"]
     text = ["test text"]
 
     vals = OrderedDict([("column0", [pva.ULONG]),
