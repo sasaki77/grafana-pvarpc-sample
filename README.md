@@ -2,10 +2,6 @@
 
 ## Installing
 
-Before use this program you need to install [PvaPy](https://github.com/epics-base/pvaPy).
-
-After install PvaPy, clone this package and install other requirements.
-
 ```bash
 $ pip install -r requirements.txt
 ```

@@ -1,3 +1,4 @@
 numpy==1.14.2
 pytz==2018.4
 wsgiref==0.1.2
+pvapy==1.4.0
