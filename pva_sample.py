@@ -3,8 +3,6 @@ import time
 import argparse
 from datetime import datetime
 
-from collections import OrderedDict
-
 import pytz
 
 import pvaccess as pva
@@ -119,15 +117,15 @@ def get(x):
     nano = data["nano"]
     val_type = data["type"]
 
-    vals = OrderedDict([("column0", [val_type]),
-                        ("column1", [pva.DOUBLE]),
-                        ("column2", [pva.DOUBLE])])
-    table = pva.PvObject(OrderedDict({"labels": [pva.STRING], "value": vals}),
-                         "epics:nt/NTTable:1.0")
+    vals = {"column0": [val_type],
+            "column1": [pva.DOUBLE],
+            "column2": [pva.DOUBLE]}
+    table = pva.PvObject({"labels": [pva.STRING], "value": vals},
+                          "epics:nt/NTTable:1.0")
     table.setScalarArray("labels", ["value", "secondsPastEpoch", "nanoseconds"])
-    table.setStructure("value", OrderedDict({"column0": value,
-                                             "column1": seconds,
-                                             "column2": nano}))
+    table.setStructure("value", {"column0": value,
+                                 "column1": seconds,
+                                 "column2": nano})
 
     return table
 
@@ -185,7 +183,7 @@ def is_to_unixtime_seconds(iso_str):
     try:
         dt = datetime.strptime(iso_str, "%Y-%m-%dT%H:%M:%S")
     except ValueError:
-        print "Invalid time"
+        print("Invalid time")
     return int(dt.strftime("%s"))
 
 
@@ -209,7 +207,7 @@ def main():
         while True:
             time.sleep(1)
     except KeyboardInterrupt:
-        print "exit"
+        print("exit")
 
 
 if __name__ == "__main__":
