@@ -163,18 +163,11 @@ def annotation(x):
     tags = ["test1,test2"]
     text = ["test text"]
 
-    vals = OrderedDict([("column0", [pva.ULONG]),
-                        ("column1", [pva.STRING]),
-                        ("column2", [pva.STRING]),
-                        ("column3", [pva.STRING])])
-    table = pva.PvObject(OrderedDict({"labels": [pva.STRING], "value": vals}),
-                         "epics:nt/NTTable:1.0")
+    vals = {"column0": [pva.ULONG], "column1": [pva.STRING], "column2": [pva.STRING], "column3": [pva.STRING]}
+    table = pva.PvObject({"labels": [pva.STRING], "value": vals},
+                          "epics:nt/NTTable:1.0")
     table.setScalarArray("labels", ["time", "title", "tags", "text"])
-    table.setStructure("value", OrderedDict({"column0": time,
-                                             "column1": title,
-                                             "column2": tags,
-                                             "column3": text}))
-
+    table.setStructure("value", {"column0": time, "column1": title, "column2": tags, "column3": text})
     return table
 
 
